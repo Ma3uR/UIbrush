@@ -1,0 +1,165 @@
+.header{
+    margin-bottom: 2.37rem;
+    &__title{
+        .font-ubuntu();
+        font-weight: 500;
+        font-size: 4.5rem;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        color: #4c4c4b;
+        .primary{
+            text-transform: uppercase;
+            color: var(--primary-color);            
+        }
+    }
+}
+
+
+// burger
+
+.header__burger{
+    display: flex;
+    justify-content: end;
+    
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 320px;
+    position: relative;
+    color: white;
+    text-align: center;
+    height: 40px;
+    font-family: 'Arial';
+}
+
+#check-menu{
+    display: none;
+}
+
+label{
+    display: block;
+    position: absolute;
+    top: 0;
+    right:1px;
+    width: 20%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    line-height: 40px;
+}
+
+.header__burger__burger-line{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 45px;
+    height: 6px;
+    background-color: var(--primary-color);
+    transition: .5s all;
+}
+
+.second, .third{
+    top: 18px;
+}
+
+.fourth{
+    top: 28px;
+}
+
+.main-menu{
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: -10px;
+    left:1%;
+    transform: translateY(100%);
+    max-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    transition: .5s all;
+}
+
+.burger-link{
+    display: block;
+    width: 100%;
+    padding: 25px 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-top: 1px solid rgba(255,255,255,.3);
+    background-color: #7a7a7a;
+}
+.burger-link:active .burger-link:visited{
+    color: var(--primary-color);
+}
+
+.burger-link:hover{
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+#check-menu:checked ~ .main-menu{
+    max-height: 500px;
+    font-size: 16px;
+}
+
+#check-menu:checked ~ .first{
+    display: none;
+}
+
+#check-menu:checked ~ .second{
+    transform: rotate(45deg);
+}
+
+#check-menu:checked ~ .third{
+    transform: rotate(-45deg);
+}
+
+#check-menu:checked ~ .fourth{
+    display: none;
+}
+
+
+// TABLET
+
+.header-tablet-desk{
+    padding-top: 1.75rem;
+    display: none;
+}
+
+.tablet{
+    font-size: 2.25rem;
+}
+
+.header-tablet-desk__nav__links{
+    li:not(:first-child){
+        margin-left: 2.37rem;
+    }
+    a{
+        display: inline-block;
+        .font-ubuntu();
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: .93rem;
+        text-decoration: none;
+        color: #414141;
+        padding-bottom: 5px;
+        position: relative;
+    }
+    a:hover{
+        margin-bottom: -2px;
+        border-bottom: 2px solid var(--primary-color);
+    }
+    a:hover::before{
+        display: block;
+    }
+    a::before{
+        content:'';
+        display: none;
+        background: url(../img/dot.png) no-repeat;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        left:42%;
+        top: 24px;
+    }
+}

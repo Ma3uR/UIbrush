@@ -10,17 +10,17 @@ module.exports = function(grunt) {
              files: {
                 "css/style.css": "less/style.less"
              }
-         },
-         watch: {
-            styles: {
-               files: ['less/**/*.less'],
-               tasks: ['less'],
-               options: {
-                  nospawn: true
-               }
-            }
          }
     },
+    watch: {
+      styles: {
+         files: ['less/**/*.less'],
+         tasks: ['less'],
+         options: {
+            nospawn: true,
+         }
+      }
+   },
     
  });
  grunt.loadNpmTasks('grunt-contrib-less');
