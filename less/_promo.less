@@ -1,30 +1,38 @@
-.promo{
-    
-    
-    background: url(../img/promo.jpg) no-repeat center;
-    background-size:cover;
+.header {
+    position: relative;
 }
 
-.promo__text{
+.promo__text {
+    position: absolute;
+    top: 45%;
+    left: 18%;
+    z-index: 2;
     .font-ubuntu();
     font-weight: bold;
     flex-direction: column;
     color: white;
-    padding-top: 20%;
-    padding-bottom: 18%;
     font-size: 3.5vw;
-    &__upper{
+    @media (min-width: 768px) {
+        left: 19%;
+    }
+    @media (min-width: 1024px) {
+        font-size: 26px;
+        left: 30%;
+    }
+
+    &__upper {
+        z-index: 2;
         background-color: rgba(0, 0, 0, 50%);
         padding: .68rem 2.62rem;
         margin-bottom:.68rem;
     }
-    &__downer{
+    &__downer {
+        z-index: 2;
         background-color: rgba(0, 0, 0, 50%);
         padding: .68rem 1.31rem;        
     }
-
 }
-.bottom-item{
+.bottom-item {
     .font-ubuntu();
     font-weight: 500;
     text-align: center;
@@ -32,17 +40,27 @@
     background-color: #f36b47;
     padding: 1.5rem 1.56rem;
     font-size: 2.8vw;
-    a{
+    @media (min-width: 1024px) {
+        font-size: 26px;
+    }
+    a {
         color: #fff;
         text-decoration: none;
     }
-    a:hover{
+    a:hover {
         box-shadow: 0px 3px 15px rgba(0,0,0,0.3);
         color:#eee;
     }
-    .primary{
+    .primary {
         font-weight: bold;
         text-transform:uppercase;
         text-decoration: underline;
     }
+}
+
+#activate {
+    margin: 17px 0;
+    width: 300px;
+    height: 64px;
+    font-size: 18px;
 }

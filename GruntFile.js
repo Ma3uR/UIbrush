@@ -1,5 +1,12 @@
 module.exports = function(grunt) {
     grunt.initConfig({
+        uglify: {
+            my_target: {
+                files: {
+                    'js/minified.js': []
+                }
+            }
+        },
        less: {
           development: {
              options: {
@@ -23,6 +30,7 @@ module.exports = function(grunt) {
    },
     
  });
+ grunt.loadNpmTasks('grunt-contrib-uglify');
  grunt.loadNpmTasks('grunt-contrib-less');
  grunt.loadNpmTasks('grunt-contrib-watch');
  grunt.registerTask('default', ['watch']);
