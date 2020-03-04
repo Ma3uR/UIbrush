@@ -1,131 +1,73 @@
 (function ($) {
     $.fn.slideShow = function (options) {
 
-        options = $.extend({
-            timeOut: 3000,
-            showNavigation: true,
-            pauseOnHover: true,
-            swipeNavigation: true
-        }, options);
+        var Slider = function (element, options) {
+            this.options = $.extend({
+                pauseOnHover: true,
+                showNavigation: true,
+                swipeNavigation: true,
+                timeOut: 3000
+            }, options);
+            this.$container = $(element);
+            this.$slidesContainer = this.$container.find('.slides-belt');
+            this.interval = null;
 
-//        Variables
-        var intervals = [],
-            slideshowImgs = [],
-            originalSrc,
-            img,
-            cont,
-            width,
-            height,
-
-            container = this.filter(function () {
-                return $(this).data('slideshow');
-            });
-
-//        Cycle through all the elements from the container object
-//        Later on we'll use the "i" variable to distinguish the separate slideshows from one another
-
-        for (var i = 0; i < container.length; i++) {
-
-            cont = $(container[i]);
-
-            width = container.eq(i).outerWidth(true);
-            height = container.eq('488px').outerHeight(true);
-
-//            For every separate slideshow, create a helper <div>, each with its own ID.
-//            In those we'll store the images for our slides.
-
-            var helpdiv = $('<div id="slideshow-container-' + i + '" class="slideshow" >');
-
-            helpdiv.height(height);
-            helpdiv.width(width);
-
-            if (options.showNavigation) {
-                createNavigation();
+            if (this.options.showNavigation) {
+                this.createNavigation();
             }
 
-            originalSrc = cont.attr('src');
-            img = $('<div class="slide" style="background-image: url(' + originalSrc + ')">');
-            img.appendTo(helpdiv);
+            this.automaticSlide();
 
-            slideshowImgs[i] = cont.attr('data-slideshow').split("|");
-
-            for (var j = 0; j < slideshowImgs[i].length; j++) {
-
-                img = $('<div class="slide" style="background-image: url(' + slideshowImgs[i][j] + ')">');
-                img.appendTo(helpdiv);
-
-            }
-
-            cont.replaceWith(helpdiv);
-
-
-            automaticSlide(i)
-
-        }
-
-
-        // Functions
-
-//          Slideshow auto switch
-
-        function automaticSlide(index) {
-
-            $('#slideshow-container-' + index + ' .slide:gt(0)').hide();
-
-            intervals[index] = setInterval(function () {
-                    $('#slideshow-container-' + index + ' .slide:first').fadeOut("slow")
-                        .next('.slide').fadeIn("slow")
-                        .end().appendTo('#slideshow-container-' + index + '');
-                },
-                options.timeOut);
-        }
-
-
-//           Pause on hover and resume on mouse leave
-
-        if (options.pauseOnHover) {
-            (function hoverPause() {
-                $('.slideshow').on({
+            // Pause on hover and resume on mouse leave
+            if (this.options.pauseOnHover) {
+                this.$container.on({
                     'mouseenter.hover': function () {
-                        clearInterval(intervals[($(this).attr('id').split('-')[2])])
-                    },
-                    'mouseleave.hover': function () {
-                        automaticSlide($(this).attr('id').split('-')[2])
-                    }
+                        clearInterval(this.interval)
+                    }.bind(this),
+                    'mouseleave.hover': this.automaticSlide.bind(this)
                 });
-            })()
-        }
+            }
 
+            // Create the navigation buttons
+            // Change slide on swipe
+            if (this.options.swipeNavigation) {
+                this.$slidesContainer.hammer().on({
+                    'swiperight': function () {
+                        clearInterval(this.interval);
 
-        function hoverStop(id) {
-            $('#' + id + '').off('mouseenter.hover mouseleave.hover');
-        }
+                        this.$slidesContainer.find('.slide:last')
+                            .fadeIn('slow')
+                            .insertBefore(this.$slidesContainer.find('.slide:first').fadeOut('slow'));
+                    }.bind(this),
+                    'swipeleft': function () {
+                        clearInterval(this.interval);
 
+                        this.$slidesContainer.find('.slide:first')
+                            .fadeOut('slow')
+                            .next('.slide')
+                            .fadeIn('slow')
+                            .end()
+                            .appendTo(this.$slidesContainer);
+                    }.bind(this)
+                })
+            }
+        };
 
-//          Create the navigation buttons
-
-        function createNavigation() {
-
-//            The buttons themselves
-            var leftArrow = $('<div class="leftBtn slideBtn hide">');
-            var rightArrow = $('<div class="rightBtn slideBtn hide">');
-//            Arrows for the buttons
-            var nextPointer = $('<span class="pointer next"></span>');
-            var prevPointer = $('<span class="pointer previous"></span>');
+        Slider.prototype.createNavigation = function () {
+            // The buttons themselves
+            var leftArrow = $('<div class="leftBtn slideBtn hide">'),
+                rightArrow = $('<div class="rightBtn slideBtn hide">'),
+                // for the buttons
+                nextPointer = $('<span class="pointer next"></span>'),
+                prevPointer = $('<span class="pointer previous"></span>');
 
             prevPointer.appendTo(leftArrow);
             nextPointer.appendTo(rightArrow);
 
-            leftArrow.appendTo(helpdiv);
-            rightArrow.appendTo(helpdiv);
-        }
+            leftArrow.appendTo(this.$container);
+            rightArrow.appendTo(this.$container);
 
-//          Slideshow manual switch
-
-        if (options.showNavigation) {
-
-
-            $('.slideshow').on({
+            this.$container.on({
                 'mouseenter': function () {
                     $(this).find('.leftBtn, .rightBtn').removeClass('hide')
                 },
@@ -134,54 +76,73 @@
                 }
             });
 
+            this.bindNavigationClicks();
+        };
 
-            $('.leftBtn').on('click', function () {
+        Slider.prototype.bindNavigationClicks = function () {
+            this.$container.find('.leftBtn').on('click', this.leftButtonClick.bind(this));
+            this.$container.find('.rightBtn').on('click', this.rightButtonClick.bind(this));
+        };
 
+        Slider.prototype.unbindNavigationClicks = function () {
+            this.$container.find('.leftBtn').off('click');
+            this.$container.find('.rightBtn').off('click');
+        };
 
-                clearInterval(intervals[($(this).parent().attr('id').split('-')[2])]);
+        Slider.prototype.leftButtonClick = function () {
+            this.unbindNavigationClicks();
+            clearInterval(this.interval);
 
+            this.$container.find('.slide:last')
+                .fadeIn('slow', function () {
+                    this.bindNavigationClicks();
+                    this.automaticSlide();
+                }.bind(this))
+                .insertBefore(
+                    this.$container.find('.slide:first').fadeOut('slow')
+                );
 
-                $(this).parent().find('.slide:last').fadeIn("slow")
-                    .insertBefore($(this).parent().find('.slide:first').fadeOut("slow"));
+            this.$container.off('mouseenter.hover mouseleave.hover');
+        };
 
-                hoverStop($(this).parent().attr('id'));
-            });
+        // Slider.prototype.effectSlide = function () {};
+        // Slider.prototype.effectFade = function () {};
+        // Slider.prototype.effectInside = function () {};
 
-            $('.rightBtn').on('click', function () {
+        Slider.prototype.rightButtonClick = function () {
+            this.unbindNavigationClicks();
+            clearInterval(this.interval);
 
-                clearInterval(intervals[($(this).parent().attr('id').split('-')[2])]);
+            this.$slidesContainer.find('.slide:first')
+                .fadeOut('slow')
+                .next('.slide')
+                .fadeIn(`slow`, function () {
+                    this.bindNavigationClicks();
+                    this.automaticSlide();
+                }.bind(this))
+                .end()
+                .appendTo(this.$slidesContainer);
 
+            this.$container.off('mouseenter.hover mouseleave.hover');
+        };
 
-                $(this).parent().find('.slide:first').fadeOut("slow")
-                    .next('.slide').fadeIn("slow")
-                    .end().appendTo($(this).parent());
+        Slider.prototype.automaticSlide = function () {
+            this.$container.find('.slide:gt(0)').hide();
 
-                hoverStop($(this).parent().attr('id'));
-            });
-        }
+            this.interval = setInterval(function () {
+                    this.$slidesContainer.find('.slide:first')
+                        .fadeOut('slow')
+                        .next('.slide')
+                        .fadeIn('slow')
+                        .end()
+                        .appendTo(this.$slidesContainer);
+                }.bind(this),
+                this.options.timeOut
+            );
+        };
 
-//              Change slide on swipe
-
-        if (options.swipeNavigation) {
-            $('.slideshow').hammer().on({
-                "swiperight": function () {
-                    clearInterval(intervals[($(this).attr('id').split('-')[2])]);
-
-                    $(this).find('.slide:last').fadeIn("slow")
-                        .insertBefore($(this).find('.slide:first').fadeOut("slow"))
-
-                },
-                "swipeleft": function () {
-                    clearInterval(intervals[($(this).attr('id').split('-')[2])]);
-
-                    $(this).find('.slide:first').fadeOut("slow")
-                        .next('.slide').fadeIn("slow")
-                        .end().appendTo($(this));
-                }
-            })
-        }
-
+        $(this).each(function (index, element) {
+            new Slider(element, options)
+        });
     }
-}(jQuery)
-    )
-;
+}(jQuery));

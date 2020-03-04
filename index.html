@@ -1,85 +1,211 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="stylesheet" href="css/style.css">
- <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic-ext" rel="stylesheet">     
- <title>UI brush</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic-ext" rel="stylesheet">
+    <title>UI brush</title>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery.hammer-full.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/slider.js"></script>
+
 </head>
 <body>
-    <header class="header mr">
-        <div class="header-mobile">
-            <div class="container">
-                <div class="header__burger">
-                    <input type="checkbox" id="check-menu">
-                    <label for="check-menu"></label>
-                    <div class="header__burger__burger-line first"></div>
-                    <div class="header__burger__burger-line second"></div>
-                    <div class="header__burger__burger-line third"></div>
-                    <div class="header__burger__burger-line fourth"></div>
-                    <nav class="main-menu">
-                        <a class="burger-link" href="javascript:void(0)">Home</a>
-                        <a class="burger-link" href="javascript:void(0)">About Us</a>
-                        <a class="burger-link" href="javascript:void(0)">Services</a>
-                        <a class="burger-link" href="javascript:void(0)">Portfolio</a>
-                        <a class="burger-link" href="javascript:void(0)">Contact Us</a>
-                    </nav>
-                </div>
-                <a href="javascript:void(0)" class="header__title"><span class="primary">ui</span>Brush</a>
+<header class="header mr">
+    <div class="header-mobile">
+        <div class="container">
+            <div class="header__burger">
+                <input type="checkbox" id="check-menu">
+                <label for="check-menu"></label>
+                <div class="header__burger__burger-line first"></div>
+                <div class="header__burger__burger-line second"></div>
+                <div class="header__burger__burger-line third"></div>
+                <div class="header__burger__burger-line fourth"></div>
+                <nav class="main-menu">
+                    <a class="burger-link" href="javascript:void(0)">Home</a>
+                    <a class="burger-link" href="javascript:void(0)">About Us</a>
+                    <a class="burger-link" href="javascript:void(0)">Services</a>
+                    <a class="burger-link" href="javascript:void(0)">Portfolio</a>
+                    <a class="burger-link" href="javascript:void(0)">Contact Us</a>
+                </nav>
             </div>
+            <a href="javascript:void(0)" class="header__title"><span class="primary">ui</span>Brush</a>
         </div>
-        
-            <div class="header-tablet-desk flex flex--between flex--center">
-                
-                    <a href="javascript:void(0)" class="header__title tablet"><span class="primary">ui</span>Brush</a>
-                    <nav class="header-tablet-desk__nav">
-                        <ul class="header-tablet-desk__nav__links flex">
-                            <li><a href="javascript:void(0)">Home</a></li>
-                            <li><a href="javascript:void(0)">About Us</a></li>
-                            <li><a href="javascript:void(0)">Services</a></li>
-                            <li><a href="javascript:void(0)">Portfolio</a></li>
-                            <li><a href="javascript:void(0)">Contact Us</a></li>
-                        </ul>
-                    </nav>
-                </div>
-    </header>
-    <div class="container">
-        <div class="header">
-            <img class="headerImg"
-                 src="img/slide/promo.jpg"
-                 data-slideshow='img/slide/img1.jpg|img/slide/img2.jpg|img/slide/img3.jpg'>
-            <div class="promo__text flex flex--center">
-                <h2 class="promo__text__upper">
-                    Welcome To UIBrush
-                </h2>
-                <h2 class="promo__text__downer">
-                    We Provide Ultimate Templates
-                </h2>
-            </div>
-        </div>
-            <div class="bottom-item">
-                Lorem ipsum dolor sit amet <a href="javascript:void(0)"><span class="primary">consectetuer adipiscing elit</span></a>
-            </div>
     </div>
 
-
-    <section class="uibrush">
-        <div class="container">
-            <div class="uibrush__title-text">
-                <h2 class="uibrush__title-text__title">UIBrush</h2>
-                <div class="uibrush__title-text__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore eturet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-                    voluptate velit esse cillum.
+    <div class="header-tablet-desk flex flex--between flex--center">
+        <a href="javascript:void(0)" class="header__title tablet"><span class="primary">ui</span>Brush</a>
+        <nav class="header-tablet-desk__nav">
+            <ul class="header-tablet-desk__nav__links flex">
+                <li><a href="javascript:void(0)">Home</a></li>
+                <li><a href="javascript:void(0)">About Us</a></li>
+                <li><a href="javascript:void(0)">Services</a></li>
+                <li><a href="javascript:void(0)">Portfolio</a></li>
+                <li><a href="javascript:void(0)">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="header">
+        <div id="slideshow-container" class="slideshow">
+            <div class="slides-belt">
+                <div class="slide">
+                    <img src="img/slide/img1.jpg" alt="Text Slide"/>
                 </div>
+                <div class="slide">
+                    <img src="img/slide/img2.jpg" alt="Text Slide"/>
                 </div>
+                <div class="slide">
+                    <img src="img/slide/img3.jpg" alt="Text Slide"/>
+                </div>
+            </div>
+            <div class="promo__text flex flex--center">
+                <h2 class="promo__text__upper">Welcome To UIBrush</h2>
+                <h2 class="promo__text__downer">We Provide Ultimate Templates</h2>
+            </div>
         </div>
-        <div class="uibrush__border first-border"></div>
-        <div class="container">
-            <div class="uibrush__blocks flex flex--between">
 
-                <div class="uibrush__blocks__left flex flex--between">
-                    <div class="uibrush__blocks__item">
+        <div id="slideshow-container-1" class="slideshow">
+            <div class="slides-belt">
+                <div class="slide">
+                    <img src="img/slide/img1.jpg" alt="Text Slide"/>
+                </div>
+                <div class="slide">
+                    <img src="img/slide/img2.jpg" alt="Text Slide"/>
+                </div>
+                <div class="slide">
+                    <img src="img/slide/img3.jpg" alt="Text Slide"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript">
+        (function ($) {
+            $(function () {
+                $('#slideshow-container').slideShow({
+                    timeOut: 4000,
+                    showNavigation: true,
+                    pauseOnHover: true,
+                    swipeNavigation: true
+                });
+            })
+        }(jQuery));
+    </script>
+    <script type="application/javascript">
+        (function ($) {
+            $(function () {
+                $('#slideshow-container-1').slideShow({
+                    timeOut: 1000,
+                    showNavigation: true,
+                    pauseOnHover: true,
+                    swipeNavigation: true
+                });
+            })
+        }(jQuery));
+    </script>
+    <div class="bottom-item">
+        Lorem ipsum dolor sit amet <a href="javascript:void(0)"><span class="primary">consectetuer adipiscing elit</span></a>
+    </div>
+</div>
+
+<section class="uibrush">
+    <div class="container">
+        <div class="uibrush__title-text">
+            <h2 class="uibrush__title-text__title">UIBrush</h2>
+            <div class="uibrush__title-text__text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore eturet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate velit esse cillum.
+            </div>
+        </div>
+    </div>
+    <div class="uibrush__border first-border"></div>
+    <div class="container">
+        <div class="uibrush__blocks flex">
+
+            <div class="wrapper-accordion">
+
+                <button class="accordion">
+                    <img src="img/inov.png" alt="delivery">
+                    Innovative design
+                </button>
+                <div class="panel">
+                        <div class="uibrush__blocks__item__title">
+                            Innovative Design
+                        </div>
+                        <div class="uibrush__blocks__item__text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore eturet dolore magna aliqua.
+                        </div>
+                </div>
+
+                <button class="accordion">
+                    <img src="img/coding.png" alt="codiing">
+                    Clean codding
+                </button>
+                <div class="panel">
+                    <div class="uibrush__blocks__item__title">
+                        Clean Coding
+                    </div>
+                    <div class="uibrush__blocks__item__text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore eturet dolore magna aliqua.
+                    </div>
+                </div>
+
+                <button class="accordion">
+                    <img src="img/delivery.png" alt="delivery">
+                    Quick delivery
+                </button>
+                <div class="panel">
+                    <div class="uibrush__blocks__item__title">
+                        Quick Delivery
+                    </div>
+                    <div class="uibrush__blocks__item__text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore eturet dolore magna aliqua.
+                    </div>
+                </div>
+
+                <button class="accordion">
+                    <img src="img/support.png" alt="support">
+                    Best support
+                </button>
+                <div class="panel">
+                    <div class="uibrush__blocks__item__title">
+                        Best Support
+                    </div>
+                    <div class="uibrush__blocks__item__text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore eturet dolore magna aliqua.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab flex">
+                <button class="tablinks" onclick="openCity(event, 'first')">
+                    <img src="img/inov.png" alt="delivery">
+                    Innovative design
+                </button>
+                <button class="tablinks" onclick="openCity(event, 'second')">
+                    <img src="img/coding.png" alt="codiing">
+                    Clean codding
+                </button>
+                <button class="tablinks" onclick="openCity(event, 'third')">
+                    <img src="img/delivery.png" alt="delivery">
+                    Quick delivery
+                </button>
+                <button class="tablinks" onclick="openCity(event, 'fourth')">
+                    <img src="img/support.png" alt="support">
+                    Best support
+                </button>
+            </div>
+                <div class="wrapper-tabcontent">
+                    <div class="uibrush__blocks__item tabcontent" id="first" >
                         <div class="uibrush__blocks__item__image">
                             <img src="img/inov.png" alt="innovative">
                         </div>
@@ -87,27 +213,23 @@
                             Innovative Design
                         </div>
                         <div class="uibrush__blocks__item__text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore eturet dolore magna aliqua.
                         </div>
                     </div>
-
-                    <div class="uibrush__blocks__item">
+                    <div class="uibrush__blocks__item tabcontent" id="second" >
                         <div class="uibrush__blocks__item__image">
-                            <img src="img/coding.png" alt="clean coding">
+                            <img src="img/coding.png" alt="codding">
                         </div>
                         <div class="uibrush__blocks__item__title">
                             Clean Coding
                         </div>
                         <div class="uibrush__blocks__item__text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore eturet dolore magna aliqua.
                         </div>
                     </div>
-                </div>
-
-                <div class="uibrush__blocks__right flex flex--between">
-                    <div class="uibrush__blocks__item">
+                    <div class="uibrush__blocks__item tabcontent" id="third" >
                         <div class="uibrush__blocks__item__image">
                             <img src="img/delivery.png" alt="delivery">
                         </div>
@@ -115,12 +237,11 @@
                             Quick Delivery
                         </div>
                         <div class="uibrush__blocks__item__text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore eturet dolore magna aliqua.
                         </div>
                     </div>
-                    
-                    <div class="uibrush__blocks__item last">
+                    <div class="uibrush__blocks__item tabcontent" id="fourth">
                         <div class="uibrush__blocks__item__image">
                             <img src="img/support.png" alt="support">
                         </div>
@@ -128,116 +249,80 @@
                             Best Support
                         </div>
                         <div class="uibrush__blocks__item__text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore eturet dolore magna aliqua.
                         </div>
+                    </div>
+
                 </div>
-                </div>
-            </div>
+    </div>
+    <div class="uibrush__border first-border"></div>
+</section>
+
+<section class="recent-project">
+    <div class="container">
+        <div class="recent-project__title-text">
+            <h2 class="recent-project__title-text__title">Recent Project</h2>
+            <div class="recent-project__title-text__text">
+            </div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
         </div>
-        <div class="uibrush__border first-border"></div>
-    </section>
+        <div class="slider flex flex--center">
+            <div class="slider-arrow prev"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                <svg width="48px" height="29px" viewBox="0 0 11 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <section class="recent-project">
-        <div class="container">
-            <div class="recent-project__title-text">
-                <h2 class="recent-project__title-text__title">Recent Project</h2>
-                <div class="recent-project__title-text__text">
-                    </div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
-            </div>
-            <div class="slider flex flex--center">
-                <div class="slider-arrow prev"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                    <svg width="48px" height="29px" viewBox="0 0 11 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="Dribbble-Light-Preview" transform="translate(-385.000000, -6679.000000)" fill="#f37b5c">
-                                <g id="icons" transform="translate(56.000000, 160.000000)">
-                                    <path d="M338.61,6539 L340,6537.594 L331.739,6528.987 L332.62,6528.069 L332.615,6528.074 L339.955,6520.427 L338.586,6519 C336.557,6521.113 330.893,6527.014 329,6528.987 C330.406,6530.453 329.035,6529.024 338.61,6539" id="arrow_left-[#334]"></path>
-                                </g>
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Dribbble-Light-Preview" transform="translate(-385.000000, -6679.000000)" fill="#f37b5c">
+                            <g id="icons" transform="translate(56.000000, 160.000000)">
+                                <path d="M338.61,6539 L340,6537.594 L331.739,6528.987 L332.62,6528.069 L332.615,6528.074 L339.955,6520.427 L338.586,6519 C336.557,6521.113 330.893,6527.014 329,6528.987 C330.406,6530.453 329.035,6529.024 338.61,6539" id="arrow_left-[#334]"></path>
                             </g>
                         </g>
-                    </svg></div>
-                    <div class="slider_line flex flex--center">
+                    </g>
+                </svg></div>
+            <div class="slider_line flex flex--center">
 
-                        <div class="recent-project__blocks__item slideitem">
-                            <div class="recent-project__blocks__item__image">
-                                <a href="javascript:void(0)"><img src="img/img-001.jpg" alt="one"></a>
-                            </div>
-                            <div class="recent-project__blocks__item__title">Portfolio One</div>
-                            <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                        </div>
-                        <div class="recent-project__blocks__item slideitem">
-                            <div class="recent-project__blocks__item__image">
-                                <a href="javascript:void(0)"><img src="img/img-002.jpg" alt="one"></a>
-                            </div>
-                            <div class="recent-project__blocks__item__title">Portfolio Two</div>
-                            <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                        </div>
-                        <div class="recent-project__blocks__item slideitem">
-                            <div class="recent-project__blocks__item__image">
-                                <a href="javascript:void(0)"><img src="img/img-003.jpg" alt="one"></a>
-                            </div>
-                            <div class="recent-project__blocks__item__title">Portfolio Three</div>
-                            <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                        </div>
-                        <div class="recent-project__blocks__item slideitem">
-                            <div class="recent-project__blocks__item__image">
-                                <a href="javascript:void(0)"><img src="img/img-004.jpg" alt="one"></a>
-                            </div>
-                            <div class="recent-project__blocks__item__title">Portfolio Four</div>
-                            <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                        </div>
+                <div class="recent-project__blocks__item slideitem">
+                    <div class="recent-project__blocks__item__image">
+                        <a href="javascript:void(0)"><img src="img/img-001.jpg" alt="one"></a>
                     </div>
-                <div class="slider-arrow next"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                    <svg width="48px" height="29px" viewBox="0 0 11 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="Dribbble-Light-Preview" transform="translate(-425.000000, -6679.000000)" fill="#f37b5c">
-                                <g id="icons" transform="translate(56.000000, 160.000000)">
-                                    <path d="M370.39,6519 L369,6520.406 L377.261,6529.013 L376.38,6529.931 L376.385,6529.926 L369.045,6537.573 L370.414,6539 C372.443,6536.887 378.107,6530.986 380,6529.013 C378.594,6527.547 379.965,6528.976 370.39,6519" id="arrow_right-[#333]"></path>
-                                </g>
+                    <div class="recent-project__blocks__item__title">Portfolio One</div>
+                    <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+                </div>
+                <div class="recent-project__blocks__item slideitem">
+                    <div class="recent-project__blocks__item__image">
+                        <a href="javascript:void(0)"><img src="img/img-002.jpg" alt="one"></a>
+                    </div>
+                    <div class="recent-project__blocks__item__title">Portfolio Two</div>
+                    <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+                </div>
+                <div class="recent-project__blocks__item slideitem">
+                    <div class="recent-project__blocks__item__image">
+                        <a href="javascript:void(0)"><img src="img/img-003.jpg" alt="one"></a>
+                    </div>
+                    <div class="recent-project__blocks__item__title">Portfolio Three</div>
+                    <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+                </div>
+                <div class="recent-project__blocks__item slideitem">
+                    <div class="recent-project__blocks__item__image">
+                        <a href="javascript:void(0)"><img src="img/img-004.jpg" alt="one"></a>
+                    </div>
+                    <div class="recent-project__blocks__item__title">Portfolio Four</div>
+                    <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+                </div>
+            </div>
+            <div class="slider-arrow next"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                <svg width="48px" height="29px" viewBox="0 0 11 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Dribbble-Light-Preview" transform="translate(-425.000000, -6679.000000)" fill="#f37b5c">
+                            <g id="icons" transform="translate(56.000000, 160.000000)">
+                                <path d="M370.39,6519 L369,6520.406 L377.261,6529.013 L376.38,6529.931 L376.385,6529.926 L369.045,6537.573 L370.414,6539 C372.443,6536.887 378.107,6530.986 380,6529.013 C378.594,6527.547 379.965,6528.976 370.39,6519" id="arrow_right-[#333]"></path>
                             </g>
                         </g>
-                    </svg></div>
-            </div>
-            <div class="recent-project__blocks flex flex--between">
+                    </g>
+                </svg></div>
+        </div>
+        <div class="recent-project__blocks flex flex--between">
 
-                <div class="recent-project__blocks__left ">
-                    <div class="recent-project__blocks__item">
-                        <div class="recent-project__blocks__item__image">
-                            <a href="javascript:void(0)"><img src="img/img-001.jpg" alt="one"></a>
-                        </div>
-                        <div class="recent-project__blocks__item__title">Portfolio One</div>
-                        <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                    <div class="recent-project__blocks__item">
-                        <div class="recent-project__blocks__item__image">
-                            <a href="javascript:void(0)"><img src="img/img-002.jpg" alt="one"></a>
-                        </div>
-                        <div class="recent-project__blocks__item__title">Portfolio Two</div>
-                        <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                </div>
-
-                <div class="recent-project__blocks__right ">
-                    <div class="recent-project__blocks__item">
-                        <div class="recent-project__blocks__item__image">
-                            <a href="javascript:void(0)"><img src="img/img-003.jpg" alt="one"></a>
-                        </div>
-                        <div class="recent-project__blocks__item__title">Portfolio Three</div>
-                        <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                    <div class="recent-project__blocks__item">
-                        <div class="recent-project__blocks__item__image">
-                            <a href="javascript:void(0)"><img src="img/img-004.jpg" alt="one"></a>
-                        </div>
-                        <div class="recent-project__blocks__item__title">Portfolio Four</div>
-                        <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="recent-project__blocks-desk flex flex--between">
-
+            <div class="recent-project__blocks__left ">
                 <div class="recent-project__blocks__item">
                     <div class="recent-project__blocks__item__image">
                         <a href="javascript:void(0)"><img src="img/img-001.jpg" alt="one"></a>
@@ -252,6 +337,9 @@
                     <div class="recent-project__blocks__item__title">Portfolio Two</div>
                     <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
                 </div>
+            </div>
+
+            <div class="recent-project__blocks__right ">
                 <div class="recent-project__blocks__item">
                     <div class="recent-project__blocks__item__image">
                         <a href="javascript:void(0)"><img src="img/img-003.jpg" alt="one"></a>
@@ -266,64 +354,91 @@
                     <div class="recent-project__blocks__item__title">Portfolio Four</div>
                     <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
                 </div>
-
-
             </div>
+
         </div>
-    </section>
-    <div class="container">
-        <section class="talk">
-                <h2 class="talk__title">Talk <span class="orange">To Us</span></h2>
-                <div class="talk__text">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-                    nihil impedit quo facilis est et expedita distinctio minus id quod maxime placeat facere possimus, omnis voluptas assumenda est.   </div>
-        </section>
-    </div>
-    <section class="contact">
-        <div class="container">
-            <h2 class="contact__title">Contact Us</h2>
-            <div class="contact__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore eturet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.  Lorem ipsum dolor       sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore eturet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-            </div>
-        </div>  
-    </section>
-    
-    <section class="details">
-        <div class="container flex flex--between">
-            <div class="details__map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48408.57696361843!2d-73.9540777849369!3d40.684190165872586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2z0J3RjNGOLdCZ0L7RgNC6LCDQodCo0JA!5e0!3m2!1sru!2sua!4v1581427384482!5m2!1sru!2sua" width="100%"  height="450" style="border:0;" allowfullscreen=""></iframe></div>
-                    <div class="details__contact-details flex">
-                        <h2 class="details__contact-details__title">Contact Details:</h2>
-                            <div class="details__contact-details__wrapper flex">
-                                <div class="details__contact-details__wrapper__sec flex flex--between">
-                                    <div class="details__contact-details__phone-sec">(+91) 0975 720 3582</div>
-                                    <div class="details__contact-details__email-sec"><a href="javascript:void(0)" class="text">Email@domain.com</a></div>
-                                </div>
-                                <div class="details__contact-details__phone"><a href="tel:+9109757203582">(+91) 0975 720 3582</a></div>
-                                <div class="details__contact-details__email"><a href="mailto:Email@domain.com" class="text">Email@domain.com</a></div>
-                                <address class="details__contact-details__address">
-                                    No.235, New St, 25th
-                                    Sector,London, 
-                                    England</address>
-                            </div>
-                        <form class="details-form" action="javascript:void(0)">
-                            <div class="details-form__wrapper">
-                                <input name="name" type="text" class="name" maxlength="22" placeholder="Name">
-                                <input name="email" type="email" class="email" placeholder="Email">
-                                <textarea name="message" class="message" maxlength="520" placeholder="Message"></textarea>
-                            </div>
-                            <input class="submit" type="submit" name="submit">
-                        </form>
-                    </div>
+        <div class="recent-project__blocks-desk flex flex--between">
+
+            <div class="recent-project__blocks__item">
+                <div class="recent-project__blocks__item__image">
+                    <a href="javascript:void(0)"><img src="img/img-001.jpg" alt="one"></a>
                 </div>
+                <div class="recent-project__blocks__item__title">Portfolio One</div>
+                <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="recent-project__blocks__item">
+                <div class="recent-project__blocks__item__image">
+                    <a href="javascript:void(0)"><img src="img/img-002.jpg" alt="one"></a>
+                </div>
+                <div class="recent-project__blocks__item__title">Portfolio Two</div>
+                <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="recent-project__blocks__item">
+                <div class="recent-project__blocks__item__image">
+                    <a href="javascript:void(0)"><img src="img/img-003.jpg" alt="one"></a>
+                </div>
+                <div class="recent-project__blocks__item__title">Portfolio Three</div>
+                <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="recent-project__blocks__item">
+                <div class="recent-project__blocks__item__image">
+                    <a href="javascript:void(0)"><img src="img/img-004.jpg" alt="one"></a>
+                </div>
+                <div class="recent-project__blocks__item__title">Portfolio Four</div>
+                <div class="recent-project__blocks__item__sub-title">Lorem ipsum dolor sit amet.</div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<div class="container">
+    <section class="talk">
+        <h2 class="talk__title">Talk <span class="orange">To Us</span></h2>
+        <div class="talk__text">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
+            nihil impedit quo facilis est et expedita distinctio minus id quod maxime placeat facere possimus, omnis voluptas assumenda est.   </div>
     </section>
+</div>
+<section class="contact">
+    <div class="container">
+        <h2 class="contact__title">Contact Us</h2>
+        <div class="contact__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore eturet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.  Lorem ipsum dolor       sit amet, consectetur adipisicing elit, sed do eiusmod tempor  ut labore eturet dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+        </div>
+    </div>
+</section>
 
-    <footer class="bottom-item end">
-        Copyright © 2015 Default Value.
-    </footer>
+<section class="details">
+    <div class="container flex flex--between">
+        <div class="details__map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48408.57696361843!2d-73.9540777849369!3d40.684190165872586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2z0J3RjNGOLdCZ0L7RgNC6LCDQodCo0JA!5e0!3m2!1sru!2sua!4v1581427384482!5m2!1sru!2sua" width="100%"  height="450" style="border:0;" allowfullscreen=""></iframe></div>
+        <div class="details__contact-details flex">
+            <h2 class="details__contact-details__title">Contact Details:</h2>
+            <div class="details__contact-details__wrapper flex">
+                <div class="details__contact-details__wrapper__sec flex flex--between">
+                    <div class="details__contact-details__phone-sec">(+91) 0975 720 3582</div>
+                    <div class="details__contact-details__email-sec"><a href="javascript:void(0)" class="text">Email@domain.com</a></div>
+                </div>
+                <div class="details__contact-details__phone"><a href="tel:+9109757203582">(+91) 0975 720 3582</a></div>
+                <div class="details__contact-details__email"><a href="mailto:Email@domain.com" class="text">Email@domain.com</a></div>
+                <address class="details__contact-details__address">
+                    No.235, New St, 25th
+                    Sector,London,
+                    England</address>
+            </div>
+            <form class="details-form" action="javascript:void(0)">
+                <div class="details-form__wrapper">
+                    <input name="name" type="text" class="name" maxlength="22" placeholder="Name">
+                    <input name="email" type="email" class="email" placeholder="Email">
+                    <textarea name="message" class="message" maxlength="520" placeholder="Message"></textarea>
+                </div>
+                <input class="submit" type="submit" name="submit">
+            </form>
+        </div>
+    </div>
+</section>
 
-    <script src="js/jquery-3.4.1.min.js"> </script>
-    <script src="js/jquery.hammer-full.min.js"> </script>
-    <script src="js/plugin.js"> </script>
-    <script src="js/jquery.js"></script>
-    <script src="js/slider.js"></script>
+<footer class="bottom-item end">Copyright © 2015 Default Value.</footer>
 
+<script src="js/tab.js"></script>
+<script src="js/accordion.js"></script>
 </body>
 </html>
